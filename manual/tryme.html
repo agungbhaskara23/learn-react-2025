@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar React</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root">
+        <script type="text/babel">
+            const container = document.getElementById('root');
+            const root = ReactDOM.createRoot(container);
+
+            function ButtonText({text}){
+                return(
+                    <span>{text}</span>
+                )
+            }
+
+            function NumText({num}){
+                return(
+                    <span>{num}</span>
+                )
+            };
+
+            function HomePage(){
+                const [num, setNum] = React.useState(0)
+
+                function numUp(){
+                    setNum(num + 1)
+                }
+                function numDown(){
+                    setNum(num - 1)
+                }
+                function numReset(){
+                    setNum(0)
+                }
+
+                return(
+                    <>
+                    <button onClick={numDown}><ButtonText text="-" /></button>
+                    <NumText num={num}/>
+                    <button onClick={numUp}><ButtonText text="+" /></button>
+                      <button onClick={numReset}><ButtonText text="Reset!" /></button>
+                    </>
+                );
+            };
+
+            root.render(<HomePage />)
+
+        </script>
+    </body>
+</div>
+</html>
+

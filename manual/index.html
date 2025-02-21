@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar React</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root">
+        <script type="text/babel">
+            const container = document.getElementById('root');
+            const root = ReactDOM.createRoot(container);
+            
+            function Header() { //komponen sendiri
+                return (<h1>Halo belajar react nih😊</h1>);
+            };
+            
+            function HomePage() { //komponen bersarang
+                return (
+                    <div>
+                        <Header />
+                    </div>
+                );
+            };
+
+            function HomePage2() { //menggunakan kembali komponen
+                return (
+                    <>
+                        <Header /> 
+                        <Header /> 
+                    </>
+                );
+            };
+            
+            function Header2(props) { //penerapan props
+                return (<h1>Halo belajar react nih bareng {props.author} 😊</h1>);
+            };
+            
+            function HomePage3() { //menggunakan kembali komponen
+                return (
+                    <div>
+                        <Header2 author="Agung" /> 
+                        <Header2 author="Agung Bhaskara" /> 
+                    </div>
+                );
+            };        
+
+            function Header3({author}) { //penerapan props refactor (destructuring + ternary refactor)
+                return (<h1>Halo belajar react nih bareng {author ? author: 'Agung'}😊</h1>);
+            };
+            
+            function HomePage4() { //menggunakan kembali komponen
+                return (
+                    <div>
+                        <Header3 /> 
+                        <Header3 author="Agung Bhaskara" /> 
+                    </div>
+                );
+            };    
+
+            function HomePage5() { //menampilkan elemen dengan pengulangan
+                const students = ['Agung', 'Bhaskara', 'Agung Bhaskara']
+                return(
+                    <>
+                        <Header />
+                        <ul>
+                            {
+                                students.map((student) => (
+                                   <li>{student}</li>
+                                ))
+                            }
+                        </ul>
+                    </>
+                );
+            };    
+            //ada warning pada homepage 5 yang menunjukkan bahwa harus ada penanda/key pada item yang berulang
+
+            function HomePage6() { //menampilkan elemen dengan pengulangan
+                const students = ['Agung', 'Bhaskara', 'Agung Bhaskara'];
+                return(
+                    <>
+                        <Header />
+                        <ul>
+                            {
+                                students.map((student) => (
+                                   <li key={student}>{student}</li>
+                                ))
+                            }
+                        </ul>
+                    </>
+                );
+            };
+            
+            // State
+            function HomePage7() {
+                const students = ['Agung', 'Bhaskara', 'Agung Bhaskara']
+                const [likes, setLikes] = React.useState(0); 
+
+                function handleClick(){
+                    setLikes(likes + 1);
+                };
+
+                return  (
+                    <>
+                        <Header3 />
+                        <Header3 author="Agung Bhaskara"/>
+                        <ul>
+                            {
+                                students.map((student) => (
+                                   <li key={student}>{student}</li>
+                                ))
+                            }
+                        </ul>
+                        <button onClick={handleClick}> Like ({likes})</button>
+                    </>   
+                );
+            };
+            //Likes merupakan state/variabel yang nilainya akan berubah
+            //setLikes merupakan state updater function (fungsi pengubah variabel)
+            //0 merupakan nilai awal state
+
+            root.render(<HomePage7 />)
+        </script>
+    </body>
+</div>
+</html>
