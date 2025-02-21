@@ -1,5 +1,7 @@
 # Learn React Programming Language and Next.js Framework
 
+Note: It is original by the author and prohibited to be used/copied/modified by any user (this repo created only for archiving purpose).
+
 This repository includes code for learning React and Next.js. It includes some mini project which is created for comprehensive understanding. Unfortunately, this project cannot be run in Next.js Framework since the Next.js core file is not included in this repo (limitation of batch upload size).
 
 As a preview, here provided the screenshot of some mini project's user interface (UI)
@@ -12,5 +14,3 @@ As a preview, here provided the screenshot of some mini project's user interface
 
 ## Tic Tac Toe
 ![Tic Tac Toe](images/tic-tac-toe.png)
-
-Note: It is original by the author and prohibited to be used/copied/modified by any user (this repo created only for archiving purpose).
